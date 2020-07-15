@@ -1,0 +1,44 @@
+# read06.txt
+
+ HDD 버퍼메모리?
+ 버퍼: HDD - Memory 사이의 속도차를 보완
+ 캐시: CPU - Memory 사이의 속도차를 보완
+
+ 빌드
+ 
+  /WEB-INF : 클라이언트가 접근 불가
+  		/lib : 외부 jar 파일 배치
+  		/classes: 컴파일된 클래스
+  		/tag: 사용자 태그 파일
+  		web.xml: 설정파일(DO, 배포기술자)
+  		
+  배포방법:
+  1. 직접 파일 복사(긴급할 때만 사용, 실제 사용X)
+  2. war 직접 복사 (작은 WAS, 실제 상용 WAS는 관리자 메뉴를 통해서만 된다.)
+  CI tool 사용 (지속적 통합)
+  	-jenkins : 형상관리 연계, 빌드, 배포, 실행
+  	
+  --에러처리(6장) 우선순위
+  1순위> 해당 페이지에 에러페이지가 지정된 경우
+  2순위> web.xml에 해당 예외(Exeption)가 지정된 경우
+  3순위> web.xml에 해당 예외코드가 지정된 경우
+  4순위> 위의 설정이 없으면 WAS 기본 에러페이지가 제공
+  
+  
+  mypage.jsp에서
+  	age 파라미터가 30보다 작으면
+  		ClassCastExcption 을 던지고
+  	age 짝수면
+	  	IndexOutOfBoundsException을 던지고
+	  	
+	입력하신 나이는 24입니다.(정상)
+	
+	web.xml에
+	에러코드: 500 
+		/WEB-INF/err/error500.jsp -> 아까 404 카피하고 문구만 교체
+		
+	예외종류 IndexOutOfBoundsException
+		 /WEB-INF/err/errorBound.jsp -> 아까 404 카피하고 문구만 교체
+	
+	
+	

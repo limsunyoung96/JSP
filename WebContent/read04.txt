@@ -1,0 +1,67 @@
+# 0710 read04.txt
+
+MIME type
+
+HTTP 상태코드(status code)
+100: (김수정) : 해당 요청을 진행중
+200: (정종안) : 요청을 정상적으로 처리 했음
+300: (류정은) : 요청의 정보가 변경되었음
+400: (김아름) : 잘못된 요청(404, 401, 403)
+500: (한창희) : 내부 서버 오류(서버 프로그램의 오류)
+
+HTTP 메서드 종류
+현재 브라우저는 GET/POST만 지원
+GET    : 정보 전송 요청 (read)
+POST   : 데이터 전송 (send)
+PUT    : 데이터 저장 (save)
+DELETE : 데이터 삭제 (delete)
+HEAD   : GET과 유사하지만 META 정보만 요청
+
+REST 기반으로 작업할 때 위 메서드를 모두 사용합니다.
+REST란, "웹에 존재하는 모든 자원(이미지, 동여상, DB 자원)에 고유한 URI를
+
+CRUDE Operation, HTTP Method
+Create : POST(자원 생성)
+ READ : GET 데이터 전송 (send)
+ UPDATE: PUT 데이터 저장 (save)
+ DELETe : DELTETE  데이터 삭제 (delete)
+ ----------------------------------------
+ 서블릿에서는 사용자의 요청을 처리하기 위해 여러 객체 제공
+ ----------------------------------------
+ DNS : Domain Name System
+ 	도메인 네임에 대한 실제 주소 정보 조회
+ 	"www.daum.net"요청 ----------> DNS 실제 주소
+ 			|			<---------- 실제 IP
+ 			|
+ 	실제 IP 요청		--->
+ 	
+ 클라이언트(컴퓨터)는 DNS 요청전에 먼저 찾아보는 파일
+ unix(linux, mac) /etc/hosts
+ windows C:\windows\system\driver\etc\hosts
+ 
+ 
+ -----프로젝트 들어가시면 ------
+ 사업관리 막내가 와서 A4한장에
+  host (개발쪽 IP)
+  ftp (접근 ID, PW)   <-- 통합된(Eclipse + WAS + JDK + ..)
+  svn, ci ip
+ 
+ 서버 : WebServer, WAS, DBMS
+ 
+ 본인  컴 : hosts 파일 수정을 해서 개발서버에 접근하게 변경
+ 개발서버 : WebServer, WAS, DBMS
+ 운영서버 : 민간인 또는 내부 운영중인 서버
+ 
+ /etc/hosts에 기술해야할 IP
+ 
+ request.getParamet(String) -> String
+ 파라미터는 무조건 문자열로 반환
+ 34 -> "34", 2020/12/25 -> "2020/12/25"
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
