@@ -13,10 +13,12 @@
 		<li><%=request.getParameter("result")%>
 		<li><%=request.getParameter("likes")%>
 		 <%
-		 	List<String> hate = (List) request.getAttribute("hate");
-		 for (String x : hate) {
-		 	out.println("<li>" + x);
-		 }
-		 %>
+ 	List<String> hate = (List) request.getAttribute("hate");
+ if (hate != null) {
+ 	for (String x : hate) {
+ 		out.println("<li>" + x);
+ 	}
+ }
+ %>
 	</ul>
 </div>

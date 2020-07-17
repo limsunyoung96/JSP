@@ -4,8 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>08/main.jsp</title>
-<%@include file="/WEB-INF/inc/header.jsp"%>
+<title>08/main.jsp<%-- <%=hate%> --%></title>
+<%@ include file="/WEB-INF/inc/header.jsp"%>
+
+
+<%-- <% String hate = "배동환" %> --%>
 
 </head>
 <body>
@@ -13,7 +16,7 @@
 		<!-- //START : top.jsp -->
 		<jsp:include page="/WEB-INF/inc/top.jsp" />
 		<!-- //END : top.jsp -->
-		
+
 		<!-- //START : left.jsp -->
 		<jsp:include page="/WEB-INF/inc/left.jsp" />
 		<!-- //END : left.jsp -->

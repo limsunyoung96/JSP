@@ -47,3 +47,11 @@ body, th, td, input, select, textarea, button, li {
 	border: 1px dotted red;
 	text-align: center;
 }
+
+table {
+	width: 80%;
+}
+
+td, th {
+	border: 1px solid gray;
+}
