@@ -18,9 +18,9 @@
 </html>
 <%!public void IsError(int age) {
 		if (age < 30) {
-			throw new ClassCastException();
+			throw new ClassCastException("너무 나이 많아");
 		}
 		if (age % 2 == 0) {
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("나이 짝수");
 		}
 	}%>

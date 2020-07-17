@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page isErrorPage="true"%>
+
+<%
+	// exception.
+%>
 
 <!DOCTYPE html>
 <html lang="ko" class="os_mac chrome pc version_56_0_2924_87">
@@ -290,8 +295,10 @@ address, caption, cite, code, dfn, em, var {
 				해당 서비스 접속이 <span class="emph_txt">원활하지 않습니다.</span>
 			</h2>
 			<p class="desc_error">
-				이용에 불편을 드린 점 진심으로 사과 드리며,<br> 편리하게 서비스를 이용하실 수 있도록 최선의 노력을 다하고
-				있습니다.
+				이용에 불편을 드린 점 진심으로 사과 드리며,<br>
+				<%=exception.getClass().getName() %>
+				<%=exception.getMessage() %>
+				편리하게 서비스를 이용하실 수 있도록 최선의 노력을 다하고 있습니다.
 			</p>
 			<p class="desc_error">고객 여러분의 양해 부탁드립니다</p>
 			<p class="desc_error">
