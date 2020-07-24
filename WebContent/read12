@@ -1,0 +1,4 @@
+CDN(Content Delivery Network)
+  : 다운로드 받을때 가까이 있는 서버에서 받는 것보다 시간이 오래 걸리므로, 
+    사용자와 가까운 곳에 위치한 Cache Server에 해당 Content를 저장(캐싱)하고
+    Content 요청시에 Cache Server가 응답을 주는 기술입니다.
