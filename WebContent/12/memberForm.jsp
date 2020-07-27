@@ -14,28 +14,28 @@
 		<tbody>
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="memId" ></td>
+				<td><input type="text" name="memId" class="form-control input-sm"></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="memPass" ></td>
+				<td><input type="password" name="memPass" class="form-control input-sm"></td>
 			</tr>
 			<tr>
 				<th>회원명</th>
-				<td><input type="text" name="memName" ></td>
+				<td><input type="text" name="memName" class="form-control input-sm"></td>
 			</tr>
 			<tr>
 				<th>생일</th>
-				<td><input type="date" name="memBir" ></td>
+				<td><input type="date" name="memBir" class="form-control input-sm"></td>
 			</tr>
 			<tr>
 				<th>헨드폰</th>
-				<td><input type="tel" name="memHp" ></td>
+				<td><input type="tel" name="memHp" class="form-control input-sm"></td>
 			</tr>
 			<tr>
 				<th>직업</th>
 				<td>
-					<select name="memJob" >
+					<select name="memJob" class="form-control input-sm">
 						<option value="">-- 직업 선택 --</option>
 						<option value="JB01">주부</option>
 						<option value="JB02">은행원</option>
@@ -52,7 +52,7 @@
 			<tr>
 				<th>취미</th>
 				<td>
-					<select name="memLike" >
+					<select name="memLike" class="form-control input-sm">
 						<option value="">-- 취미 선택 --</option>
 						<option value="HB01">서예</option>
 						<option value="HB02">장기</option>
@@ -75,7 +75,11 @@
 			
 				<td colspan="2"><button type="submit" class="btn btn-default" >
 				<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-				회원가입</button></td>
+				회원가입</button>
+				<a href="#" class="btn btn-info">
+				<span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+				그냥 링크</a>
+				</td>
 			</tr>
 		</tbody>	
 	</table>

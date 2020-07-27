@@ -27,11 +27,11 @@
  		member1.setMemName(request.getParameter("memName"));
  		member1.setMemJob(request.getParameter("memJob"));
  %>
- 아이디 :    <%=member1.getMemId() %> <br>
- 비밀번호 :   <%=member1.getMemPass() %> <br>
- 회원명 :    <%=member1.getMemName() %> <br>
- 직업 :      <%=member1.getMemJob() %> <br>
- <hr>
+	 아이디 :    <%=member1.getMemId() %> <br>
+	 비밀번호 :   <%=member1.getMemPass() %> <br>
+	 회원명 :    <%=member1.getMemName() %> <br>
+	 직업 :      <%=member1.getMemJob() %> <br>
+	 <hr>
  
 	<h4> &lt;useBean /&gt; 과 &lt;setProperty /&gt; , &lt;getProperty /&gt; 사용 </h4>
 	<jsp:useBean id="member2" class="com.study.member.vo.MemberVO" scope="page"/>
