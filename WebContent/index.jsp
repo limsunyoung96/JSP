@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<%@ include file="/WEB-INF/inc/header.jsp"%>
+<%@ include file ="/WEB-INF/inc/top.jsp" %>
 <title>/index.jsp</title>
 </head>
 <body>
-	<h2>Study 사이트에 오신걸 환영합니다.!!~~~!!!!!!~~!!~~!!</h2>
+	 <h2>Study 사이트에 오신걸 환영합니다.!!~~~!!!!!!~~!!~~!!</h2> 
 </body>
 </html>

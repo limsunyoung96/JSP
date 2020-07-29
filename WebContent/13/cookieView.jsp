@@ -1,3 +1,4 @@
+<%@page import="com.study.common.util.CookieUtils"%>
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -14,7 +15,7 @@
 <body>
 
 	<h3>쿠키 확인</h3>
-	<%
+	<%--
 		Cookie[] cookies = request.getCookies();
 	if (cookies != null) {
 		out.println("<ul>");
@@ -29,6 +30,11 @@
 	} else {
 		out.println("쿠키 없어요...ㅠㅠ");
 	}
+	--%>
+
+	<%
+		CookieUtils cookieUtils = new CookieUtils(request);
 	%>
-</body>
+
+	mycookie의 값 <%=cookieUtils.getValue("mycookie") %>body>
 </html>

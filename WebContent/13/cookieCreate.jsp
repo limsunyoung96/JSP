@@ -1,3 +1,4 @@
+<%@page import="com.study.common.util.CookieUtils"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,7 +14,7 @@
 </head>
 <body>
 <h4>쿠키 생성할게요.</h4>
-<%
+<%/*
 	Cookie cookie = new Cookie("mycookie", URLEncoder.encode("Today 많이 졸려","utf-8"));
 	// 유효시간 설정
 	//	cookie.setMaxAge(120); // 2분간 유효시간 설정\
@@ -21,6 +22,10 @@
 	cookie.setMaxAge(180);
 	// path 설정
 	cookie.setPath("/"); // /(로컬호스트) or study(application에서만 사용)
+	// 도메인 설정
+	// cookie.setDomain("sy.com");
+	*/
+	Cookie cookie = CookieUtils.createCookie("mycookie", "임선영 왕 졸려~~");
 	response.addCookie(cookie);	
 %>
 
