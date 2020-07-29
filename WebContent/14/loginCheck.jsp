@@ -41,6 +41,8 @@
 	<%
 		}else{
 			if(user.getUserPass().equals(pw)){
+				// 2.2 조회된 객체가 존재하고 pw가 맞으면
+				// response.sendRedirect 사용해서 "/" 또는 "/index.jsp"로
 				String [] check_values = request.getParameterValues("rememberMe");
 				if(check_values!=null&&check_values[0].equals("Y")){ //values[0].equals("Y")
 					/* Cookie cookie = new Cookie("SAVE_ID",URLEncoder.encode(request.getParameter("userId"),"utf-8")); */
@@ -49,22 +51,25 @@
 					response.addCookie(cookie);
 					
 				}else{
+					// 2.3 조회된 객체가 존재하고 pw가 틀리면
+					// pageContext의 forward 사용하여 "비밀번호를 확인해 주세요"
 					/* Cookie cookie = new Cookie("SAVE_ID","");
 					cookie.setMaxAge(0); */
-					Cookie cookie = CookieUtils.createCookie("SAVE_ID","","/",0);	
-					response.addCookie(cookie);
+					response.addCookie(CookieUtils.createCookie("SAVE_ID","","/",0));
 				}
-				response.sendRedirect(request.getContextPath()+"/");
+				// 현재 사용자 정보(UserVO)를 세션에 저장
+				System.out.println("세션에 정보 저장: "+ user);
+				session.setAttribute("USER_INFO", user); //key: USER_INFO 
+				
+				response.sendRedirect(request.getContextPath() + "/");
 			}else{
 				pageContext.forward("login.jsp?msg=비밀번호를 확인해 주세요");
 			}
 		}
 		
-		// 2.2 조회된 객체가 존재하고 pw가 맞으면
-		// response.sendRedirect 사용해서 "/" 또는 "/index.jsp"로
 		
-		// 2.3 조회된 객체가 존재하고 pw가 틀리면
-		// pageContext의 forward 사용하여 "비밀번호를 확인해 주세요"
+		
+		
 	%>
 
 

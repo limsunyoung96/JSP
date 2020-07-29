@@ -1,3 +1,4 @@
+<%@page import="com.study.login.vo.UserVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,7 +14,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">JiWon Home</a>
+          <a class="navbar-brand" href="#">Sunyoung Home</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -34,12 +35,45 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%=request.getContextPath() %>/14/login.jsp">로그인</a></li>
-            <li><a href="../navbar-static-top/">MyPage</a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          
+          <% 
+          	UserVO user = (UserVO)session.getAttribute("USER_INFO");
+          if(user == null){
+        	  %>
+        	  <li><a href="<%=request.getContextPath() %>/14/login.jsp">로그인</a></li>
+            <li><a href="<%=request.getContextPath() %>/join/join.jsp">회원가입</a></li>
+        	  <%
+          }else{
+          %>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+              	aria-expanded="false"><%=user.getUserName()%>님<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">
+                	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                	&nbsp;&nbsp;MyPage
+                </a></li>
+                <li><a href="#">
+                	<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                	&nbsp;&nbsp;비밀번호 변경
+                	</a></li>
+                <li><a href="#">
+                	<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                	&nbsp;&nbsp;1:1 문의 게시판
+                	</a></li>
+                <li class="divider"></li>
+                <li><a href="<%=request.getContextPath() %>/14/logout.jsp">
+                	<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                	&nbsp;&nbsp;로그아웃
+                	</a></li>
+              </ul>
+            </li>
+           <% } %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
+
 
 

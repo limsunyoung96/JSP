@@ -1,0 +1,12 @@
+# read15.txt
+
+서블릿 생성
+com.study.servlet ApplicationLoader.java
+
+PageContext 객체를 구해서 (appliication)
+	속성에 어플리케이션에서 필요한 정보 저장
+	DB.USER = java
+	DB.PASSWORD = oracle
+	DB.URL = jdbc:oracle:thin:@127.0.0.1:1521:xe
+	FILE.PATH = "/home/pc44/upload"
+	
