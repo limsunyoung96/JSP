@@ -1,0 +1,12 @@
+# read16.txt
+
+* 쿠키와 세션의 차이점
+	교재 p237 : 쿠키 vs 세션
+
+* 세션 단점
+	동일 도메인의 서브 도메인간 세션 공유 안됨  www.daum.net, news.daum.net
+	한 서버에서 어플리케이션간 세션 공유 안됨
+	
+Apache commons lang
+	StringUtils, ToStringBuilder
+	

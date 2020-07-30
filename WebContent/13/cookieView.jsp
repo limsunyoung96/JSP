@@ -15,7 +15,7 @@
 <body>
 
 	<h3>쿠키 확인</h3>
-	<%--
+	<%
 		Cookie[] cookies = request.getCookies();
 	if (cookies != null) {
 		out.println("<ul>");
@@ -30,7 +30,7 @@
 	} else {
 		out.println("쿠키 없어요...ㅠㅠ");
 	}
-	--%>
+	%>
 
 	<%
 		CookieUtils cookieUtils = new CookieUtils(request);

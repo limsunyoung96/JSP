@@ -15,7 +15,10 @@
 <%
 	String id = request.getParameter("prodId");
 	ProdVO prod = ProductList.getProduct(id);
+	System.out.println(prod.toString());
 %>
+
+
 <div class="container">
 <h3>상품 상세보기</h3>
 <table class="prod-list">

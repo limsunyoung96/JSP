@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class ProdVO {
 	private String prodId;             
 	private String prodName;           
@@ -28,7 +31,11 @@ public class ProdVO {
 		this.prodRegDate = prodRegDate;
 	}
 
-	
+	// toString 편하게 해주는 ToStringBuilder로 변경
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}            
 	public String getProdId() {
 		return prodId;
 	}
@@ -73,7 +80,9 @@ public class ProdVO {
 
 	public void setProdRegDate(String prodRegDate) {
 		this.prodRegDate = prodRegDate;
-	}            
+	}
+
+	
 	
 } // class 
 

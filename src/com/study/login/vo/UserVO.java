@@ -2,6 +2,9 @@ package com.study.login.vo;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 // VO 생성시 Serializable 구현하는게 원칙
 public class UserVO implements Serializable {
 	private String userId;
@@ -23,11 +26,11 @@ public class UserVO implements Serializable {
 
 	// toString() 구현
 	// 맴버필드의 get/set 메서드 생성
+	// toString 편하게 해주는 ToStringBuilder로 변경
 	@Override
 	public String toString() {
-		return "UserVO [userId=" + userId + ", userName=" + userName + ", userPass=" + userPass + ", userRole="
-				+ userRole + "]";
-	}
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}  
 
 	public String getUserId() {
 		return userId;
