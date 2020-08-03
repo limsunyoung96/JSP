@@ -25,7 +25,6 @@ public class UserList {
 		
 		user = new UserVO("milkis", "밀키스", "1004", "MANAGER");
 		usersMap.put(user.getUserId(), user);
-
 	}
 
 	public UserVO getUser(String id) {
@@ -42,4 +41,8 @@ public class UserList {
 	public List<UserVO> getUserList() {
 		return new ArrayList<UserVO>(usersMap.values());
 	}
-} // class
+	
+	public Map<String, UserVO> getUsersMap() {
+		return usersMap;
+	}
+}

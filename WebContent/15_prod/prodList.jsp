@@ -27,6 +27,9 @@
 
 <div class="container">
 <h3>제품 목록</h3>
+<c:set var="list" value="<%=ProductList.getProductList() %>" />
+
+
 <%
 	List<ProdVO> list = ProductList.getProductList();
 %>

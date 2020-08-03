@@ -1,0 +1,14 @@
+# read18.txt
+
+ com.study.common.util
+ 	StudyFileUtil
+ 	+public static String fancySize(long size)
+ 	
+ 	
+	1024 보다 작으면 size + "bytes"
+	(1024*1024)보다 작으면 +"kb"
+	20109 -> 19.64 kb
+	(1024*1024*1024) 보다 작으면 Mb
+	2414476 -> 2.30Mb
+ 	
+ 	

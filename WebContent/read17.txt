@@ -1,0 +1,37 @@
+# read17.txt
+
+ EL / JSTL 
+ 
+ JSTL : 표준이기는 하지만 해당 api를 복사해야 합니다.
+  사용하는 WAS의 샘플폴더에 라이브러리를 복사하시거나
+  또는 메이븐저장소에서 검색해서 
+  
+EL : Expression Language 
+스크립트릿, 표현식을 다른 표기법으로 구현하는 스크립트입니다.
+
+EL 기능
+ - * 기본객체의 속성에 있는 객체를 표현    
+ - 간단한 연산가능 (산술, 논리, 관계연산 가능)
+ - JSP에서 사용하기 위한 기본객체 제공 (param, header, pageContext, 등)
+ 
+ - 객체의 메서드 직접 호출 (서블릿 3.0, JSP 2.2)
+ - Java 8 부터 지원하는 기능 제공 (서블릿 3.1, JSP 2.3)
+    (람다, 스트림 API, 정적호출)
+ - 추가된 EL기능 (서블릿 3.1, JSP 2.3)
+    (변수할당, 세미콜론 연산자, 문자열 더하기 기능)    
+    
+    
+/u01/app/oracle/product/11.2.0/xe/jdbc/lib
+
+ DML : insert, update, delete, 
+ query : select 
+
+
+
+
+
+
+
+    
+    
+    
