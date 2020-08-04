@@ -28,9 +28,9 @@
 	EL내에서 {e1, e2, .. } set : e1(리스트, 맵) 
 </pre>
 <pre>
-	<c:forEach items="${['임소뇽','박성욘','호내윤']}" var="v">
+	<%-- <c:forEach items="${['임소뇽','박성욘','호내윤']}" var="v">
 		${v}
-	</c:forEach>
+	</c:forEach> --%>
 </pre>
 <c:set var="map" value="${{'소뇽':'내 이름이 뭐라고~?','제리':'오줌똥쟁이야 방구쟁이기도 하지'}}"/>
 <c:forEach items="${map}" var="entry">
