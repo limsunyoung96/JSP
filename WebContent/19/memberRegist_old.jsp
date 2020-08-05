@@ -1,4 +1,3 @@
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -27,15 +26,14 @@
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		// 변수 선언 
 		Connection conn = null;
-		//Statement stmt = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 
 		// 2. 커넥션 구하기 
 		conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "java", "oracle");
 
 		// 3. 구문 객체 생성 
-		// pstmt = conn.prepareStatement(sb.toString());
+		stmt = conn.createStatement();
 
 		StringBuffer sb = new StringBuffer();
 
@@ -46,31 +44,25 @@
 		sb.append("	    , mem_job    , mem_like   , mem_mileage   ");
 		sb.append("	    , mem_delete                              ");
 		sb.append("	) VALUES (                                    ");
-		sb.append(" ?, ?, ?");
-		sb.append(" ,?, ?, ?");
-		sb.append(" ,?, ?, ?");
-		sb.append(" ,?, ?, 0");
-		sb.append(" ,'N' ");
+		sb.append("	     '" + member.getMemId() + "'");
+		sb.append("	    ,'" + member.getMemPass() + "'");
+		sb.append("	    ,'" + member.getMemName() + "'");
+		sb.append("	    ,'" + member.getMemBir() + "'");
+		sb.append("	    ,'" + member.getMemZip() + "'");
+		sb.append("	    ,'" + member.getMemAdd1() + "'");
+		sb.append("	    ,'" + member.getMemAdd2() + "'");
+		sb.append("	    ,'" + member.getMemHp() + "'");
+		sb.append("	    ,'" + member.getMemMail() + "'");
+		sb.append("	    ,'" + member.getMemJob() + "'");
+		sb.append("	    ,'" + member.getMemLike() + "'");
+		sb.append("	    , 0                                     ");
+		sb.append("	    , 'N'                                     ");
 		sb.append("	)		                                          ");
-
-		pstmt = conn.prepareStatement(sb.toString());
-		// 구문 실행 전에 파라미터 설정
-		int i = 1;
-		pstmt.setString(i++, member.getMemId());
-		pstmt.setString(i++, member.getMemPass());
-		pstmt.setString(i++, member.getMemName());
-		pstmt.setString(i++, member.getMemBir());
-		pstmt.setString(i++, member.getMemZip());
-		pstmt.setString(i++, member.getMemAdd1());
-		pstmt.setString(i++, member.getMemAdd2());
-		pstmt.setString(i++, member.getMemHp());
-		pstmt.setString(i++, member.getMemMail());
-		pstmt.setString(i++, member.getMemJob());
-		pstmt.setString(i++, member.getMemLike());
 
 		System.out.println(sb.toString());
 
-		int cnt = pstmt.executeUpdate(); // 수정된 것이 있다면 그 카운트 리턴
+		int cnt = stmt.executeUpdate(sb.toString());
+		
 		if (cnt > 0) {
 		%>
 		<div class="alert alert-success">정상적으로 회원등록 되었습니다.</div>
@@ -83,9 +75,9 @@
 				rs.close();
 			} catch (SQLException e) {
 			}
-		if (pstmt != null)
+		if (stmt != null)
 			try {
-				pstmt.close();
+				stmt.close();
 			} catch (SQLException e) {
 			}
 		if (conn != null)

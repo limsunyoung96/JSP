@@ -1,4 +1,3 @@
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -19,12 +18,14 @@
 			//1. 드라이버 로딩
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection conn = null;
-		// Statement stmt = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 
 		//2. 커넥션 구하기
 		conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "java", "oracle");
+
+		// 3. 구름 객체 생성
+		stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 
 		// 4. 실행
 		// String vs StringBuffer
@@ -36,17 +37,10 @@
 		sb.append("     , mem_job   , mem_like  , mem_mileage    ");
 		sb.append("     , mem_delete                             ");
 		sb.append("  FROM member                                 ");
-		sb.append(" WHERE mem_id = ? ");
-		
-		// 3. 구름 객체 생성
-		pstmt = conn.prepareStatement(sb.toString());
-		
-		// 구문 실행 전에 파라미터 설정
-		pstmt.setString(1, request.getParameter("memId"));
+		sb.append(" WHERE mem_id = '" + request.getParameter("memId") + "'");
 
 		System.out.println(sb.toString());
-		
-		rs = pstmt.executeQuery();
+		rs = stmt.executeQuery(sb.toString());
 		%>
 
 		<h3>회원가입</h3>
@@ -88,7 +82,8 @@
 					<td>
 						<%
 							String job = rs.getString("mem_job");
-						%> <select name="memJob" class="form-control input-sm">
+						%> <select name="memJob"
+						class="form-control input-sm">
 							<option value="">-- 직업 선택 --</option>
 							<option value="JB01"
 								<%="JB01".equals(job) ? "selected='selected'" : ""%>>주부</option>
@@ -116,7 +111,8 @@
 					<td>
 						<%
 							String hobby = rs.getString("mem_like");
-						%> <select name="memLike" class="form-control input-sm">
+						%> <select
+						name="memLike" class="form-control input-sm">
 							<option value="">-- 취미 선택 --</option>
 							<option value="HB01"
 								<%="HB01".equals(hobby) ? "selected='selected'" : ""%>>서예</option>
@@ -155,11 +151,8 @@
 				</tr>
 				<tr>
 					<th>탈퇴여부</th>
-					<td>Y<input type="radio" name="memDelete" value="Y"
-						<%="Y".equals(rs.getString("mem_delete")) ? "checked='checked'" : ""%>>
-						N<input type="radio" name="memDelete" value="N"
-						<%=!"Y".equals(rs.getString("mem_delete")) ? "checked='checked'" : ""%>>
-					</td>
+					<td>Y<input type="radio" name="memDelete" value="Y" <%="Y".equals(rs.getString("mem_delete")) ? "checked='checked'" : ""%>>
+						N<input type="radio" name="memDelete" value="N" <%=!"Y".equals(rs.getString("mem_delete")) ? "checked='checked'" : ""%>> </td>
 				</tr>
 				<tr>
 
@@ -182,9 +175,9 @@
 			rs.close();
 		} catch (SQLException e) {
 		}
-	if (pstmt != null)
+	if (stmt != null)
 		try {
-			pstmt.close();
+			stmt.close();
 		} catch (SQLException e) {
 		}
 	if (conn != null)

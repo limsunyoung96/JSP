@@ -1,0 +1,26 @@
+# read20.txt
+
+11장 Lambda
+12장 code, fmt, fn 나머지
+14장 커넥션풀 테스트
+
+
+oneConnOneJob.jsp 37 35 40
+manyConnManyJob.jsp 281 300 264
+oneConnManyJob.jsp 40 35 38
+
+커넥션부터 작업하고 커넥션 닫을때까지를 100으로 보았을 때, 시간
+커넥션  -  작업
+	10		90
+	30		70
+	60		40
+	90		10 (정답)
+	
+	
+	
+PreparedStatement 장점
+ - SQL Injection 에 대항
+ - 값 변환 자동 처리
+ - 간결한 코드
+ 
+ 

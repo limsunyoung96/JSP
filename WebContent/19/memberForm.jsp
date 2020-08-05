@@ -7,6 +7,7 @@
 	<title>memberForm.jsp </title>
 </head>
 <body>
+<%request.setCharacterEncoding("UTF-8"); %>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
  <div class="container">	
 	<h3>회원가입</h3>		
@@ -43,7 +44,11 @@
 				<td><input type="date" name="memBir" class="form-control input-sm"></td>
 			</tr>
 			<tr>
-				<th>헨드폰</th>
+				<th>메일</th>
+				<td><input type="email" name="memMail" class="form-control input-sm"></td>
+			</tr>
+			<tr>
+				<th>핸드폰</th>
 				<td><input type="tel" name="memHp" class="form-control input-sm"></td>
 			</tr>
 			<tr>
