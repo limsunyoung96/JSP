@@ -9,7 +9,7 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/inc/header.jsp"%>
-<title>ManyconnManyJob.jsp</title>
+<title>ManyconnManyJob4DBCP.jsp</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/top.jsp"%>
@@ -18,7 +18,6 @@
 		<%
 			long startTime = System.currentTimeMillis();
 		//1. 드라이버 로딩
-		Class.forName("oracle.jdbc.driver.OracleDriver");
 		for (int i = 0; i < 18; i++) {
 			//변수 선언
 			Connection conn = null;
@@ -26,7 +25,7 @@
 			ResultSet rs = null;
 
 			//2. 커넥션 구하기
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "java", "oracle");
+			conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:study");
 
 			// 3. 구름 객체 생성
 			stmt = conn.createStatement();

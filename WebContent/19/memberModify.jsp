@@ -39,25 +39,21 @@
 
 		StringBuffer sb = new StringBuffer();
 
-		sb.append("INSERT INTO member (                           ");
-		sb.append("	      mem_id     , mem_pass   , mem_name      ");
-		sb.append("	    , mem_bir    , mem_zip    , mem_add1      ");
-		sb.append("	    , mem_add2   , mem_hp     , mem_mail      ");
-		sb.append("	    , mem_job    , mem_like   , mem_mileage   ");
-		sb.append("	    , mem_delete                              ");
-		sb.append("	) VALUES (                                    ");
-		sb.append(" ?, ?, ?");
-		sb.append(" ,?, ?, ?");
-		sb.append(" ,?, ?, ?");
-		sb.append(" ,?, ?, 0");
-		sb.append(" ,'N' ");
-		sb.append("	)		                                          ");
+		sb.append("UPDATE member ");
+		sb.append("    SET  mem_name   = ? ");
+		sb.append("       , mem_bir    = ? ");
+		sb.append("       , mem_zip    = ? ");
+		sb.append("       , mem_add1   = ? ");
+		sb.append("       , mem_add2   = ? ");
+		sb.append("       , mem_hp     = ? ");
+		sb.append("       , mem_mail   = ? ");
+		sb.append("       , mem_job    = ? ");
+		sb.append("       , mem_like   = ? ");
+		sb.append("   WHERE mem_id = ?     ");
 
 		pstmt = conn.prepareStatement(sb.toString());
 		// 구문 실행 전에 파라미터 설정
 		int i = 1;
-		pstmt.setString(i++, member.getMemId());
-		pstmt.setString(i++, member.getMemPass());
 		pstmt.setString(i++, member.getMemName());
 		pstmt.setString(i++, member.getMemBir());
 		pstmt.setString(i++, member.getMemZip());
@@ -67,15 +63,21 @@
 		pstmt.setString(i++, member.getMemMail());
 		pstmt.setString(i++, member.getMemJob());
 		pstmt.setString(i++, member.getMemLike());
+		pstmt.setString(i++, member.getMemId());
 
 		System.out.println(sb.toString());
 
 		int cnt = pstmt.executeUpdate(); // 수정된 것이 있다면 그 카운트 리턴
 		if (cnt > 0) {
 		%>
-		<div class="alert alert-success">정상적으로 회원등록 되었습니다.</div>
+		<div class="alert alert-success">정상적으로 수정했습니다.</div>
 		<%
-			}
+		}else{
+		%>
+		<div class="alert alert-success">해당 회원이 존재하지 않습니다.</div>
+		<%
+		}
+	
 
 		// 자원 종료 
 		if (rs != null)

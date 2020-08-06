@@ -16,15 +16,15 @@
 	<%@ include file="/WEB-INF/inc/top.jsp"%>
 	<div class="container">
 		<%
-			//1. 드라이버 로딩
-		Class.forName("oracle.jdbc.driver.OracleDriver");
+		//1. 드라이버 로딩
+		// Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection conn = null;
 		// Statement stmt = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		//2. 커넥션 구하기
-		conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "java", "oracle");
+		conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:study");
 
 		// 4. 실행
 		// String vs StringBuffer
@@ -78,6 +78,10 @@
 				<tr>
 					<th>생일</th>
 					<td><%=rs.getString("mem_bir")%></td>
+				</tr>
+				<tr>
+					<th>메일</th>
+					<td><%=rs.getString("mem_mail")%></td>
 				</tr>
 				<tr>
 					<th>헨드폰</th>
@@ -163,13 +167,19 @@
 				</tr>
 				<tr>
 
-					<td colspan="2"><button type="submit" class="btn btn-default">
+					<td colspan="2">
+					<a href="memberList.jsp" class="btn btn-info"> <span
+							class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;목록</a>
+							
+					<!-- <button type="submit" class="btn btn-default">
 							<span class="glyphicon glyphicon-circle-arrow-right"
 								aria-hidden="true"></span> 회원가입
-						</button> <a href="#" class="btn btn-info"> <span
-							class="glyphicon glyphicon-apple" aria-hidden="true"></span> 그냥
-							링크
-					</a></td>
+					</button> --> 
+						<!--   -->
+						<a href="memberEdit.jsp?memId=${param.memId}" class="btn btn-info"> <span
+							class="glyphicon glyphicon-apple" aria-hidden="true"></span> 수정
+					</a>
+					</td>
 				</tr>
 				<%}%>
 			</tbody>

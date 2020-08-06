@@ -23,7 +23,7 @@
 		${member}
 		<%
 			// 1. 드라이버 로딩 
-		Class.forName("oracle.jdbc.driver.OracleDriver");
+		//Class.forName("oracle.jdbc.driver.OracleDriver");
 		// 변수 선언 
 		Connection conn = null;
 		Statement stmt = null;

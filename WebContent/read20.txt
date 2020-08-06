@@ -8,6 +8,7 @@
 oneConnOneJob.jsp 37 35 40
 manyConnManyJob.jsp 281 300 264
 oneConnManyJob.jsp 40 35 38
+ManyconnManyJob4JDBC.jsp 22 33 31
 
 커넥션부터 작업하고 커넥션 닫을때까지를 100으로 보았을 때, 시간
 커넥션  -  작업

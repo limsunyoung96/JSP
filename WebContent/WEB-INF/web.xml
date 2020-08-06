@@ -16,8 +16,8 @@
 	<display-name>study</display-name>
 
 	<servlet>
-		<servlet-name>apploader</servlet-name>
-		<servlet-class>com.study.servlet.ApplicationLoader</servlet-class>
+		<servlet-name>driver</servlet-name>
+		<servlet-class>com.study.servlet.DriverLoader</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 

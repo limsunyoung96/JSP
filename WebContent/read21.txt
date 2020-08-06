@@ -1,0 +1,47 @@
+# read21.txt
+
+교재 14장 부분은 중요합니다.
+
+ 05  : JSP에서 JDBC 프로그래밍 하기 (p377~p381)
+ 5.10 : Statemnet를 이용한 쿼리 실행 시 작은따옴표 처리 (p401) 
+ 5.11 : PreparedStatemnet를 사용한 쿼리 실행 (p401)
+ 5.13 : PreparedStatemnet 쿼리를 사용하는 이유 (p406)
+ 
+ 06 : 웹 어플리케이션 구동 시 JDBC 드라이버 로딩하기(p408)
+ 07 : JDBC에서 트랜잭션 처리 (p410)
+ 08 : 커넥션 풀 (p415~p416) 
+ 
+ 네이버개발자센터 DBCP 언젠가는 다시 만나리
+ => d2.naver.com
+ 
+ memberList.jsp
+  -> memberView.jsp?memId=b001
+  	  목록 -> memberList.jsp
+  	  수정 -> memberList.jsp?memId=b001
+  	  
+memberEdit.jsp (화면 memberForm.jsp + 내용 memberView.jsp)
+	 목록 -> memberList.jsp
+	 저장 -> memberModify.jsp ( memberRegist.jsp 와 거의 동일}
+	
+--과제 
+memberRegister.jsp를 복사해서 memberModify.jsp 생성
+쿼리:
+	비밀번호, 마일리지, 탈퇴여부를 제외한 모든 정보 수정
+영향받은 행수가 
+	1 이상인 경우: 
+		"정상적으로 수정했습니다."
+	0인 경우: 
+		"해당 회원이 존재하지 않습니다." 메시지 표현	
+		
+		
+교재 15장 전반부의 
+ 서비스, DAO 가 왜 필요한지 설명이 나옵니다. 
+ 01  : 웹 어플리케이션의 전형적인 구성 요소 (p426)
+ 1.1 : 웹 어플리케이션의 주요 구성 요소 (p428)
+ 1.2 : 데이터 접근 객체(DAO) 구현 (p429)
+ 1.2.1 : DAO에서 Connection에 접근하는 방식 (p431)
+ 1.3 : 서비스 클래스의 구현(p436)
+ 1.3.1 : 서비스 클래스의 트랜잭션 처리(p438)
+ 1.3.2 : 서비스 클래스의 익셉션 처리(p438)
+ 1.4 : 싱글턴 패턴을 이용한 구성 요소 구현(p440)  
+		

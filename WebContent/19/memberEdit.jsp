@@ -1,7 +1,7 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -9,81 +9,105 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/inc/header.jsp"%>
-<title>memberView.jsp</title>
+<title>memberEdit.jsp</title>
 </head>
 <body>
+	<%
+		request.setCharacterEncoding("UTF-8");
+	%>
 	<%@ include file="/WEB-INF/inc/top.jsp"%>
 	<div class="container">
+		<h3>회원 정보 수정</h3>
+
 		<%
 			//1. 드라이버 로딩
-		//Class.forName("oracle.jdbc.driver.OracleDriver");
+		// Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection conn = null;
-		Statement stmt = null;
+		// Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		//2. 커넥션 구하기
-		conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "java", "oracle");
-
-		// 3. 구름 객체 생성
-		stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+		conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:study");
 
 		// 4. 실행
 		// String vs StringBuffer
 		StringBuffer sb = new StringBuffer();
 
 		sb.append("SELECT mem_id    , mem_pass  , mem_name       ");
-		sb.append("     , mem_bir   , mem_zip   , mem_add1       ");
+		sb.append("  , TO_CHAR(mem_bir, 'YYYY-MM-DD') AS mem_bir ");
+		sb.append(" 	  , mem_zip   , mem_add1       ");
 		sb.append("     , mem_add2  , mem_hp    , mem_mail       ");
 		sb.append("     , mem_job   , mem_like  , mem_mileage    ");
-		sb.append("     , mem_delete                             ");
+		sb.append("     , NVL(mem_delete,'N')AS mem_delete       ");
 		sb.append("  FROM member                                 ");
-		sb.append(" WHERE mem_id = '" + request.getParameter("memId") + "'");
+		sb.append(" WHERE mem_id = ? ");
+
+		// 3. 구름 객체 생성
+		pstmt = conn.prepareStatement(sb.toString());
+
+		// 구문 실행 전에 파라미터 설정
+		pstmt.setString(1, request.getParameter("memId"));
 
 		System.out.println(sb.toString());
-		rs = stmt.executeQuery(sb.toString());
-		%>
 
-		<h3>회원가입</h3>
-		<table class="table table-striped ">
-			<tbody>
-				<%
-					if (rs.next()) {
-				%>
-				<tr>
-					<th>아이디</th>
-					<td><%=rs.getString("mem_id")%></td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><%=rs.getString("mem_pass")%></td>
-				</tr>
-				<tr>
-					<th>회원명</th>
-					<td><%=rs.getString("mem_name")%></td>
-				</tr>
-				<tr>
-					<th>우편번호</th>
-					<td><%=rs.getString("mem_zip")%></td>
-				</tr>
-				<tr>
-					<th>주소</th>
-					<td><%=rs.getString("mem_add1")%></td>
-				</tr>
-				<tr>
-					<th>생일</th>
-					<td><%=rs.getString("mem_bir")%></td>
-				</tr>
-				<tr>
-					<th>헨드폰</th>
-					<td><%=rs.getString("mem_hp")%></td>
-				</tr>
-				<tr>
-					<th>직업</th>
-					<td>
+		rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+		%>
+		<form action="memberModify.jsp" method="post">
+			<input type="hidden" name="memId" value='<%=rs.getString("mem_id")%>'>
+			
+			<table class="table table-striped ">
+				<tbody>
+					<tr>
+						<th>아이디</th>
+						<td><%=rs.getString("mem_id")%></td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td><input type="password" name="memPass"
+							class="form-control input-sm" required="required"
+							pattern="\w{4,}" title="알파벳과 숫자로 4글자 이상 입력"></td>
+					</tr>
+					<tr>
+						<th>회원명</th>
+						<td><input type="text" name="memName" value="<%=rs.getString("mem_name")%>"
+							class="form-control input-sm" required="required"
+							pattern="[가-힣]{2,}" title="한글로 2글자 이상 입력"></td>
+					</tr>
+					<tr>
+						<th>우편번호</th>
+						<td><input type="text" name="memZip" value="<%=rs.getString("mem_zip")%>"
+							class="form-control input-sm"></td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td><input type="text" name="memAdd1" value="<%=rs.getString("mem_add1")%>"
+							class="form-control input-sm"> 
+							<input type="text" name="memAdd2" value="<%=rs.getString("mem_add2")%>" class="form-control input-sm"></td>
+					</tr>
+					<tr>
+						<th>생일</th>
+						<td><input type="date" name="memBir" value="<%=rs.getString("mem_bir")%>"
+							class="form-control input-sm"></td>
+					</tr>
+					<tr>
+						<th>메일</th>
+						<td><input type="email" name="memMail" value="<%=rs.getString("mem_mail")%>"
+							class="form-control input-sm" required="required"></td>
+					</tr>
+					<tr>
+						<th>핸드폰</th>
+						<td><input type="tel" name="memHp" value="<%=rs.getString("mem_hp")%>"
+							class="form-control input-sm"></td>
+					</tr>
+					<tr>
+						<th>직업</th>
+						<td>
 						<%
 							String job = rs.getString("mem_job");
-						%> <select name="memJob"
-						class="form-control input-sm">
+						%> <select name="memJob" class="form-control input-sm">
 							<option value="">-- 직업 선택 --</option>
 							<option value="JB01"
 								<%="JB01".equals(job) ? "selected='selected'" : ""%>>주부</option>
@@ -104,15 +128,14 @@
 							<option value="JB09"
 								<%="JB09".equals(job) ? "selected='selected'" : ""%>>교사</option>
 					</select>
-					</td>
-				</tr>
-				<tr>
-					<th>취미</th>
-					<td>
+						</td>
+					</tr>
+					<tr>
+						<th>취미</th>
+						<td>
 						<%
 							String hobby = rs.getString("mem_like");
-						%> <select
-						name="memLike" class="form-control input-sm">
+						%> <select name="memLike" class="form-control input-sm">
 							<option value="">-- 취미 선택 --</option>
 							<option value="HB01"
 								<%="HB01".equals(hobby) ? "selected='selected'" : ""%>>서예</option>
@@ -144,47 +167,54 @@
 								<%="HB14".equals(hobby) ? "selected='selected'" : ""%>>카레이싱</option>
 					</select>
 					</td>
-				</tr>
-				<tr>
-					<th>마일리지</th>
-					<td><%=rs.getString("mem_mileage")%></td>
-				</tr>
-				<tr>
+					</tr>
+					<tr>
+						<th>마일리지</th>
+						<td><%=rs.getString("mem_mileage")%></td>
+					</tr>
+					<tr>
 					<th>탈퇴여부</th>
-					<td>Y<input type="radio" name="memDelete" value="Y" <%="Y".equals(rs.getString("mem_delete")) ? "checked='checked'" : ""%>>
-						N<input type="radio" name="memDelete" value="N" <%=!"Y".equals(rs.getString("mem_delete")) ? "checked='checked'" : ""%>> </td>
+					<td><%=rs.getString("mem_delete")%></td>
 				</tr>
-				<tr>
-
-					<td colspan="2"><button type="submit" class="btn btn-default">
-							<span class="glyphicon glyphicon-circle-arrow-right"
-								aria-hidden="true"></span> 회원가입
-						</button> <a href="#" class="btn btn-info"> <span
-							class="glyphicon glyphicon-apple" aria-hidden="true"></span> 그냥
-							링크
-					</a></td>
-				</tr>
-				<%}%>
-			</tbody>
-		</table>
+					
+					<tr>
+						<td colspan="2">
+							<a href="memberList.jsp" class="btn btn-info"> <span
+								class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+								&nbsp; 목록
+							</a>
+							
+							<button type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-circle-arrow-right"
+									aria-hidden="true"></span> 
+								&nbsp; 저장
+							</button> 
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<%
+			} // if
+		//자원 종료
+		if (rs != null)
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
+		if (pstmt != null)
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+			}
+		if (conn != null)
+			try {
+				conn.close();
+			} catch (SQLException e) {
+			}
+		%>
 	</div>
-	<%
-		// 자원 종료
-	if (rs != null)
-		try {
-			rs.close();
-		} catch (SQLException e) {
-		}
-	if (stmt != null)
-		try {
-			stmt.close();
-		} catch (SQLException e) {
-		}
-	if (conn != null)
-		try {
-			conn.close();
-		} catch (SQLException e) {
-		}
-	%>
+
 </body>
 </html>
