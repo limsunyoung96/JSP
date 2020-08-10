@@ -63,7 +63,7 @@
 		pstmt.setString(i++, member.getMemMail());
 		pstmt.setString(i++, member.getMemJob());
 		pstmt.setString(i++, member.getMemLike());
-		pstmt.setString(i++, member.getMemId());
+		pstmt.setString(i++, request.getParameter("memId") );
 
 		System.out.println(sb.toString());
 
